@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     
         XRNetworkCheckTool.sharedTool()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

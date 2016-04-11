@@ -31,6 +31,12 @@ class XRNetworkCheckTool: NSObject {
     var networkType: XRNetworkType = .XRNet_NUKnow
     var netCheckClosure: ((networkType: XRNetworkType) -> ())?
     
+    override init() {
+        super.init()
+        
+        
+    }
+    
     static func sharedTool() -> XRNetworkCheckTool {
         
         var tool: XRNetworkCheckTool?
