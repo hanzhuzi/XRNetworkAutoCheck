@@ -28,6 +28,7 @@ enum XRNetworkType {
     case XRNet_WiFi
 }
 
+@objc(XRNetworkCheckTool)
 class XRNetworkCheckTool: NSObject {
     
     var netCheckClosure: ((networkType: XRNetworkType) -> ())?
