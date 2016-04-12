@@ -14,6 +14,7 @@
  **/
 
 import UIKit
+import CoreTelephony
 
 // 网络类型定义
 enum XRNetworkType {
@@ -28,13 +29,42 @@ enum XRNetworkType {
 
 class XRNetworkCheckTool: NSObject {
     
-    var networkType: XRNetworkType = .XRNet_NUKnow
     var netCheckClosure: ((networkType: XRNetworkType) -> ())?
+    var googleReach: Reachability?
+    var internetReach: Reachability?
+    var currentNetStatus: XRNetworkType = .XRNet_UNEnable
+    var preNetStatus: XRNetworkType = .XRNet_NUKnow
+    
+    let hostName: String = {
+        return "www.google.com"
+    }()
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
     override init() {
         super.init()
         
+        self.googleReach = Reachability(hostName: hostName)
+        self.googleReach?.reachableBlock = { reachability -> () in
+            self.reachabilityCallBack(reachability)
+        }
+        self.googleReach?.unreachableBlock = { reachability -> () in
+            self.reachabilityCallBack(reachability)
+        }
+        self.googleReach?.startNotifier()
         
+        self.internetReach = Reachability.reachabilityForInternetConnection()
+        self.internetReach?.reachableBlock = { reachability -> () in
+            self.reachabilityCallBack(reachability)
+        }
+        
+        self.internetReach?.unreachableBlock = { reachability -> () in
+            self.reachabilityCallBack(reachability)
+        }
+        
+        self.internetReach?.startNotifier()
     }
     
     static func sharedTool() -> XRNetworkCheckTool {
@@ -51,9 +81,75 @@ class XRNetworkCheckTool: NSObject {
         return tool!
     }
     
+    func getNetworkType() -> XRNetworkType {
+        
+        let telephonyNetInfo = CTTelephonyNetworkInfo()
+        let netStatus = telephonyNetInfo.currentRadioAccessTechnology
+        var networkType: XRNetworkType = .XRNet_NUKnow
+        
+        if let currentRadioTech = netStatus {
+            
+            switch currentRadioTech {
+                
+            case CTRadioAccessTechnologyGPRS:
+                networkType = .XRNet_2G
+            case CTRadioAccessTechnologyEdge:
+                networkType = .XRNet_2G
+            case CTRadioAccessTechnologyeHRPD:
+                networkType = .XRNet_3G
+            case CTRadioAccessTechnologyHSDPA:
+                networkType = .XRNet_3G
+            case CTRadioAccessTechnologyCDMA1x:
+                networkType = .XRNet_2G
+            case CTRadioAccessTechnologyLTE:
+                networkType = .XRNet_4G
+            case CTRadioAccessTechnologyCDMAEVDORev0:
+                networkType = .XRNet_3G
+            case CTRadioAccessTechnologyCDMAEVDORevA:
+                networkType = .XRNet_3G
+            case CTRadioAccessTechnologyCDMAEVDORevB:
+                networkType = .XRNet_3G
+            case CTRadioAccessTechnologyHSUPA:
+                networkType = .XRNet_3G
+            default:
+                break
+            }
+        }
+        
+        return networkType
+    }
     
+    func reachabilityCallBack(myReach: Reachability?) {
+        
+        var networkType: XRNetworkType = .XRNet_NUKnow
+        
+        if let reach = myReach {
+            
+            if reach.isReachable() {
+                if reach.isReachableViaWiFi() {
+                    networkType = .XRNet_WiFi
+                }else if reach.isReachableViaWWAN() {
+                    networkType = getNetworkType()
+                }
+            }else {
+                networkType = .XRNet_UNEnable
+            }
+        }
+        
+        self.currentNetStatus = networkType
+        
+        if currentNetStatus != preNetStatus {
+            preNetStatus = currentNetStatus
+            if let closure = netCheckClosure {
+                closure(networkType: currentNetStatus)
+            }
+        }
+        
+    }
     
     func getNetworkTypeWithClosure(closure: ((networkType: XRNetworkType) -> ())?) -> () {
         self.netCheckClosure = closure
     }
 }
+
+

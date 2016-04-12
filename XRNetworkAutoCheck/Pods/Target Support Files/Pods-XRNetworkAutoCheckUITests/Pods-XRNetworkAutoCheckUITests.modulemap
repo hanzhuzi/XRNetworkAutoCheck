@@ -1,6 +1,0 @@
-framework module Pods_XRNetworkAutoCheckUITests {
-  umbrella header "Pods-XRNetworkAutoCheckUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

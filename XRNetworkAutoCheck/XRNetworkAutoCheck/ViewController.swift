@@ -9,11 +9,36 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    var hud = MBProgressHUD()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        XRNetworkCheckTool.sharedTool()
+
+        XRNetworkCheckTool.sharedTool().getNetworkTypeWithClosure { (networkType) in
+            var netStatusTemp = ""
+            
+            switch networkType {
+                
+            case .XRNet_UNEnable:
+                netStatusTemp = "网络已断开，请检查您的网络"
+            case .XRNet_2G:
+                netStatusTemp = "已切换到2G网络"
+            case .XRNet_3G:
+                netStatusTemp = "已切换到3G网络"
+            case .XRNet_4G:
+                netStatusTemp = "已切换到4G网络"
+            case .XRNet_WiFi:
+                netStatusTemp = "已切换到WiFi网络"
+            case .XRNet_NUKnow:
+                break
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), { 
+                
+                self.view.showHUD(netStatusTemp)
+            })
+        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		31C663E141CA2829D614B87B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E04785DBADDEEDFAFC45758F /* Pods.framework */; };
+		01497C2E1CBC916000524236 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 01497C2A1CBC916000524236 /* MBProgressHUD.m */; };
+		01497C2F1CBC916000524236 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 01497C2D1CBC916000524236 /* Reachability.m */; };
+		018090EB1CBCA8B800533EE0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018090EA1CBCA8B800533EE0 /* UIView+Extension.swift */; };
 		E1347D3E1CB9F0ED009AB286 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1347D3D1CB9F0ED009AB286 /* AppDelegate.swift */; };
 		E1347D401CB9F0ED009AB286 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1347D3F1CB9F0ED009AB286 /* ViewController.swift */; };
 		E1347D431CB9F0ED009AB286 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1347D411CB9F0ED009AB286 /* Main.storyboard */; };
@@ -36,10 +38,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0167AF2F1CBBCE3C005EB679 /* OC_Swift_BridgeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OC_Swift_BridgeHeader.h; sourceTree = "<group>"; };
-		1FBC530FF1123BBEC15C77DD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		80E5D4BED9E71C4232739DCA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		E04785DBADDEEDFAFC45758F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		01497C261CBC904A00524236 /* XRNetworkAutoCheck_Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XRNetworkAutoCheck_Bridging-Header.h"; sourceTree = "<group>"; };
+		01497C291CBC916000524236 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		01497C2A1CBC916000524236 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		01497C2C1CBC916000524236 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		01497C2D1CBC916000524236 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		018090EA1CBCA8B800533EE0 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		E1347D3A1CB9F0ED009AB286 /* XRNetworkAutoCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XRNetworkAutoCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1347D3D1CB9F0ED009AB286 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1347D3F1CB9F0ED009AB286 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,7 +65,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31C663E141CA2829D614B87B /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,21 +85,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		97A8D450CEA09431BE3A8C35 /* Frameworks */ = {
+		01497C271CBC916000524236 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				E04785DBADDEEDFAFC45758F /* Pods.framework */,
+				01497C281CBC916000524236 /* MBProgressHUD */,
+				01497C2B1CBC916000524236 /* Reachability */,
 			);
-			name = Frameworks;
+			path = Libs;
 			sourceTree = "<group>";
 		};
-		D01B01842C1FF7FDA6261ADA /* Pods */ = {
+		01497C281CBC916000524236 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				80E5D4BED9E71C4232739DCA /* Pods.debug.xcconfig */,
-				1FBC530FF1123BBEC15C77DD /* Pods.release.xcconfig */,
+				01497C291CBC916000524236 /* MBProgressHUD.h */,
+				01497C2A1CBC916000524236 /* MBProgressHUD.m */,
 			);
-			name = Pods;
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		01497C2B1CBC916000524236 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				01497C2C1CBC916000524236 /* Reachability.h */,
+				01497C2D1CBC916000524236 /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		018090E51CBCA5E800533EE0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				018090EA1CBCA8B800533EE0 /* UIView+Extension.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E1347D311CB9F0ED009AB286 = {
@@ -106,8 +127,6 @@
 				E1347D511CB9F0EE009AB286 /* XRNetworkAutoCheckTests */,
 				E1347D5C1CB9F0EE009AB286 /* XRNetworkAutoCheckUITests */,
 				E1347D3B1CB9F0ED009AB286 /* Products */,
-				D01B01842C1FF7FDA6261ADA /* Pods */,
-				97A8D450CEA09431BE3A8C35 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,11 +146,11 @@
 				E1347D6B1CB9F170009AB286 /* Classes */,
 				E1347D3D1CB9F0ED009AB286 /* AppDelegate.swift */,
 				E1347D3F1CB9F0ED009AB286 /* ViewController.swift */,
-				0167AF2F1CBBCE3C005EB679 /* OC_Swift_BridgeHeader.h */,
 				E1347D411CB9F0ED009AB286 /* Main.storyboard */,
 				E1347D441CB9F0EE009AB286 /* Assets.xcassets */,
 				E1347D461CB9F0EE009AB286 /* LaunchScreen.storyboard */,
 				E1347D491CB9F0EE009AB286 /* Info.plist */,
+				01497C261CBC904A00524236 /* XRNetworkAutoCheck_Bridging-Header.h */,
 			);
 			path = XRNetworkAutoCheck;
 			sourceTree = "<group>";
@@ -157,6 +176,8 @@
 		E1347D6B1CB9F170009AB286 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				018090E51CBCA5E800533EE0 /* Views */,
+				01497C271CBC916000524236 /* Libs */,
 				E1347D6C1CB9F180009AB286 /* XRNetworkCheckTool */,
 			);
 			path = Classes;
@@ -177,12 +198,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E1347D621CB9F0EE009AB286 /* Build configuration list for PBXNativeTarget "XRNetworkAutoCheck" */;
 			buildPhases = (
-				1434B0532E507ED089B90ED4 /* Check Pods Manifest.lock */,
 				E1347D361CB9F0ED009AB286 /* Sources */,
 				E1347D371CB9F0ED009AB286 /* Frameworks */,
 				E1347D381CB9F0ED009AB286 /* Resources */,
-				708EED7C249A5039B3DE7C48 /* Embed Pods Frameworks */,
-				92669BEEA47F49DCE0BCB996 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -299,62 +317,17 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		1434B0532E507ED089B90ED4 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		708EED7C249A5039B3DE7C48 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		92669BEEA47F49DCE0BCB996 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		E1347D361CB9F0ED009AB286 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				018090EB1CBCA8B800533EE0 /* UIView+Extension.swift in Sources */,
 				E1347D401CB9F0ED009AB286 /* ViewController.swift in Sources */,
 				E1347D3E1CB9F0ED009AB286 /* AppDelegate.swift in Sources */,
 				E1347D6E1CB9F559009AB286 /* XRNetworkCheckTool.swift in Sources */,
+				01497C2E1CBC916000524236 /* MBProgressHUD.m in Sources */,
+				01497C2F1CBC916000524236 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,29 +467,29 @@
 		};
 		E1347D631CB9F0EE009AB286 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 80E5D4BED9E71C4232739DCA /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = XRNetworkAutoCheck/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hanzhuzi.github.XRNetworkAutoCheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/XRNetworkAutoCheck/OC_Swift_BridgeHeader.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "XRNetworkAutoCheck/XRNetworkAutoCheck_Bridging-Header.h";
 			};
 			name = Debug;
 		};
 		E1347D641CB9F0EE009AB286 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1FBC530FF1123BBEC15C77DD /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = XRNetworkAutoCheck/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hanzhuzi.github.XRNetworkAutoCheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/XRNetworkAutoCheck/OC_Swift_BridgeHeader.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "XRNetworkAutoCheck/XRNetworkAutoCheck_Bridging-Header.h";
 			};
 			name = Release;
 		};
