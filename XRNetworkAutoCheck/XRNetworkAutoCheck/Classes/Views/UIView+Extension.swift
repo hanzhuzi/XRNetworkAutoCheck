@@ -8,7 +8,7 @@
 
 import Foundation
 
-var HUDKey: Int = 10
+private var HUDKey: Int = 10
 
 @IBDesignable
 extension UIView {
@@ -32,18 +32,6 @@ extension UIView {
         
         set(newHeight) {
             self.bounds.size.height = newHeight
-        }
-    }
-    
-    @IBInspectable var cornerRadius: CGFloat {
-        
-        get {
-            return layer.cornerRadius
-        }
-        
-        set(newRadius) {
-            self.layer.cornerRadius = newRadius
-            self.layer.masksToBounds = newRadius > 0
         }
     }
     
@@ -82,18 +70,32 @@ extension UIView {
     
     func showHUD(message: String?) {
         
-        HUD = MBProgressHUD.showHUDAddedTo(self, animated: true)
-        HUD?.mode = .Text
-        HUD?.labelText = message
+        if let msg = message {
+            
+            HUD = MBProgressHUD.showHUDAddedTo(self, animated: true)
+            HUD?.mode = .Text
+            HUD?.labelText = msg
+            HUD?.labelColor = UIColor.whiteColor()
+            HUD?.removeFromSuperViewOnHide = true
+            HUD?.labelFont = UIFont.systemFontOfSize(15.0)
+            HUD?.margin = 8.0
+            HUD?.cornerRadius = 5.0
+            HUD?.opacity = 0.75
+            // yOffset center到底部的距离
+            HUD?.yOffset = Float(self.height * 0.5 - 70.0)
+            
+            self.hideHUD()
+        }
+    }
+    
+    func hideHUD() {
         
-       let time = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
         
         dispatch_after(time, dispatch_get_main_queue()) {
             MBProgressHUD.hideHUDForView(self, animated: true)
         }
     }
     
-    func hideHUD() {
-        
-    }
 }
+

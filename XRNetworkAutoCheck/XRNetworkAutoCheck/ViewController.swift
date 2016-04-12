@@ -10,13 +10,11 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var hud = MBProgressHUD()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         XRNetworkCheckTool.sharedTool().getNetworkTypeWithClosure { (networkType) in
-            var netStatusTemp = ""
+            var netStatusTemp = "未知网络"
             
             switch networkType {
                 
@@ -36,7 +34,7 @@ class ViewController: UIViewController {
             
             dispatch_async(dispatch_get_main_queue(), { 
                 
-                self.view.showHUD(netStatusTemp)
+                UIApplication.sharedApplication().keyWindow?.showHUD(netStatusTemp)
             })
         }
     }

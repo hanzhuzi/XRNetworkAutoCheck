@@ -7,10 +7,11 @@
 //
 
 /**
- *  网络状态和网络类型监测
- *  监测网络类型： WiFi, 2G, 3G, 4G
- *  监测网络状态： 有网，无网
- *  by 黯丶野火
+ *  @brief 网络状态和网络类型监测
+ *         监测网络类型： WiFi, 2G, 3G, 4G
+ *         监测网络状态： 有网，无网
+ *
+ *  @by    黯丶野火
  **/
 
 import UIKit
@@ -83,6 +84,7 @@ class XRNetworkCheckTool: NSObject {
     
     func getNetworkType() -> XRNetworkType {
         
+        // 每次检测都必须创建一个对象，否则锁屏后将无法获取网络信息
         let telephonyNetInfo = CTTelephonyNetworkInfo()
         let netStatus = telephonyNetInfo.currentRadioAccessTechnology
         var networkType: XRNetworkType = .XRNet_NUKnow
