@@ -10,6 +10,7 @@
 		01497C2E1CBC916000524236 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 01497C2A1CBC916000524236 /* MBProgressHUD.m */; };
 		01497C2F1CBC916000524236 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 01497C2D1CBC916000524236 /* Reachability.m */; };
 		018090EB1CBCA8B800533EE0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018090EA1CBCA8B800533EE0 /* UIView+Extension.swift */; };
+		01F29CD51D07BE41009BBE97 /* OCTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F29CD41D07BE41009BBE97 /* OCTestViewController.m */; };
 		E1347D3E1CB9F0ED009AB286 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1347D3D1CB9F0ED009AB286 /* AppDelegate.swift */; };
 		E1347D401CB9F0ED009AB286 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1347D3F1CB9F0ED009AB286 /* ViewController.swift */; };
 		E1347D431CB9F0ED009AB286 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1347D411CB9F0ED009AB286 /* Main.storyboard */; };
@@ -44,6 +45,8 @@
 		01497C2C1CBC916000524236 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		01497C2D1CBC916000524236 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		018090EA1CBCA8B800533EE0 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		01F29CD31D07BE41009BBE97 /* OCTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTestViewController.h; sourceTree = "<group>"; };
+		01F29CD41D07BE41009BBE97 /* OCTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTestViewController.m; sourceTree = "<group>"; };
 		E1347D3A1CB9F0ED009AB286 /* XRNetworkAutoCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XRNetworkAutoCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1347D3D1CB9F0ED009AB286 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1347D3F1CB9F0ED009AB286 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +149,8 @@
 				E1347D6B1CB9F170009AB286 /* Classes */,
 				E1347D3D1CB9F0ED009AB286 /* AppDelegate.swift */,
 				E1347D3F1CB9F0ED009AB286 /* ViewController.swift */,
+				01F29CD31D07BE41009BBE97 /* OCTestViewController.h */,
+				01F29CD41D07BE41009BBE97 /* OCTestViewController.m */,
 				E1347D411CB9F0ED009AB286 /* Main.storyboard */,
 				E1347D441CB9F0EE009AB286 /* Assets.xcassets */,
 				E1347D461CB9F0EE009AB286 /* LaunchScreen.storyboard */,
@@ -327,6 +332,7 @@
 				E1347D3E1CB9F0ED009AB286 /* AppDelegate.swift in Sources */,
 				E1347D6E1CB9F559009AB286 /* XRNetworkCheckTool.swift in Sources */,
 				01497C2E1CBC916000524236 /* MBProgressHUD.m in Sources */,
+				01F29CD51D07BE41009BBE97 /* OCTestViewController.m in Sources */,
 				01497C2F1CBC916000524236 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

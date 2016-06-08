@@ -10,16 +10,16 @@
  *  @brief 网络状态和网络类型监测
  *         监测网络类型： WiFi, 2G, 3G, 4G
  *         监测网络状态： 有网，无网
+ *         支持iPv6
  *
  *  @by    黯丶野火
- **/
+ */
 
 import UIKit
 import CoreTelephony
 
 // 网络类型定义
-enum XRNetworkType {
-    
+enum XRNetworkType: Int {
     case XRNet_NUKnow
     case XRNet_UNEnable
     case XRNet_2G
@@ -28,10 +28,12 @@ enum XRNetworkType {
     case XRNet_WiFi
 }
 
-@objc(XRNetworkCheckTool)
+typealias netChangedClosure = ((networkType: XRNetworkType) -> Void)
+
 class XRNetworkCheckTool: NSObject {
     
-    var netCheckClosure: ((networkType: XRNetworkType) -> ())?
+    var netCheckClosure: netChangedClosure? // XRNetworkType 无法转成objc类型
+    @objc(googleReach)
     var googleReach: Reachability?
     var internetReach: Reachability?
     var currentNetStatus: XRNetworkType = .XRNet_UNEnable
@@ -48,39 +50,28 @@ class XRNetworkCheckTool: NSObject {
     override init() {
         super.init()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "netStatusChanged:", name: kReachabilityChangedNotification, object: nil)
         self.googleReach = Reachability(hostName: hostName)
-        self.googleReach?.reachableBlock = { reachability -> () in
-            self.reachabilityCallBack(reachability)
-        }
-        self.googleReach?.unreachableBlock = { reachability -> () in
-            self.reachabilityCallBack(reachability)
-        }
         self.googleReach?.startNotifier()
         
         self.internetReach = Reachability.reachabilityForInternetConnection()
-        self.internetReach?.reachableBlock = { reachability -> () in
-            self.reachabilityCallBack(reachability)
-        }
-        
-        self.internetReach?.unreachableBlock = { reachability -> () in
-            self.reachabilityCallBack(reachability)
-        }
-        
         self.internetReach?.startNotifier()
+    }
+    
+    struct Inner {
+        static var tool: XRNetworkCheckTool?
+        static var onceToken: dispatch_once_t = 0
     }
     
     static func sharedTool() -> XRNetworkCheckTool {
         
-        var tool: XRNetworkCheckTool?
-        var onceToken: dispatch_once_t = 0
-        
-        dispatch_once(&onceToken) {
-            if nil == tool {
-                tool = XRNetworkCheckTool()
+        dispatch_once(&Inner.onceToken) {
+            if nil == Inner.tool {
+                Inner.tool = XRNetworkCheckTool()
             }
         }
         
-        return tool!
+        return Inner.tool!
     }
     
     func getNetworkType() -> XRNetworkType {
@@ -122,37 +113,39 @@ class XRNetworkCheckTool: NSObject {
         return networkType
     }
     
-    func reachabilityCallBack(myReach: Reachability?) {
+    // 监听到网络状态变化
+    func netStatusChanged(notif: NSNotification) {
         
+        let reach = notif.object as? Reachability
         var networkType: XRNetworkType = .XRNet_NUKnow
         
-        if let reach = myReach {
+        if let reacha = reach {
             
-            if reach.isReachable() {
-                if reach.isReachableViaWiFi() {
+            if reacha.currentReachabilityStatus() == NotReachable {
+                networkType = .XRNet_UNEnable
+            }else {
+                if reacha.currentReachabilityStatus() == ReachableViaWiFi {
                     networkType = .XRNet_WiFi
-                }else if reach.isReachableViaWWAN() {
+                }else if reacha.currentReachabilityStatus() == ReachableViaWWAN {
                     networkType = getNetworkType()
                 }
-            }else {
-                networkType = .XRNet_UNEnable
+            }
+            self.currentNetStatus = networkType
+            
+            if currentNetStatus != preNetStatus {
+                preNetStatus = currentNetStatus
+                if let closure = netCheckClosure {
+                    closure(networkType: currentNetStatus)
+                }
             }
         }
-        
-        self.currentNetStatus = networkType
-        
-        if currentNetStatus != preNetStatus {
-            preNetStatus = currentNetStatus
-            if let closure = netCheckClosure {
-                closure(networkType: currentNetStatus)
-            }
-        }
-        
     }
     
-    func getNetworkTypeWithClosure(closure: ((networkType: XRNetworkType) -> ())?) -> () {
+    func getNetworkTypeWithClosure(closure: netChangedClosure?) -> () {
         self.netCheckClosure = closure
     }
+    
+    
 }
 
 

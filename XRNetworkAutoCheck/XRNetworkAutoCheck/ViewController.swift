@@ -32,11 +32,14 @@ class ViewController: UIViewController {
                 break
             }
             
-            dispatch_async(dispatch_get_main_queue(), { 
-                
+            dispatch_async(dispatch_get_main_queue(), {
                 UIApplication.sharedApplication().keyWindow?.showHUD(netStatusTemp)
             })
         }
+        
+        XRNetworkCheckTool.sharedTool()
+        XRNetworkCheckTool.sharedTool()
+        XRNetworkCheckTool.sharedTool()
     }
     
     override func didReceiveMemoryWarning() {
