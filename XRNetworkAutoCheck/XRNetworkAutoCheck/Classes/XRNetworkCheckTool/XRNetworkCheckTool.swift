@@ -47,10 +47,10 @@ class XRNetworkCheckTool: NSObject {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    override init() {
+    private override init() {
         super.init()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "netStatusChanged:", name: kReachabilityChangedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.netStatusChanged(_:)), name: kReachabilityChangedNotification, object: nil)
         self.googleReach = Reachability(hostName: hostName)
         self.googleReach?.startNotifier()
         
@@ -58,13 +58,11 @@ class XRNetworkCheckTool: NSObject {
         self.internetReach?.startNotifier()
     }
     
-    struct Inner {
-        static var tool: XRNetworkCheckTool?
-        static var onceToken: dispatch_once_t = 0
-    }
-    
     static func sharedTool() -> XRNetworkCheckTool {
-        
+        struct Inner {
+            static var tool: XRNetworkCheckTool?
+            static var onceToken: dispatch_once_t = 0
+        }
         dispatch_once(&Inner.onceToken) {
             if nil == Inner.tool {
                 Inner.tool = XRNetworkCheckTool()

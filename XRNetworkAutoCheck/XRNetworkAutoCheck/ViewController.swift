@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         XRNetworkCheckTool.sharedTool().getNetworkTypeWithClosure { (networkType) in
             var netStatusTemp = "未知网络"
             
@@ -36,17 +36,13 @@ class ViewController: UIViewController {
                 UIApplication.sharedApplication().keyWindow?.showHUD(netStatusTemp)
             })
         }
-        
-        XRNetworkCheckTool.sharedTool()
-        XRNetworkCheckTool.sharedTool()
-        XRNetworkCheckTool.sharedTool()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 
